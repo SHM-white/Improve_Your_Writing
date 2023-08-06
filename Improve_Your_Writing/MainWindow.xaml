@@ -38,7 +38,7 @@
 
         <!-- 使用ComboBox控件选择字体 -->
         <TextBlock Margin="3" Grid.Row="1" Grid.Column="0" Text="Font Name:" />
-        <ComboBox Margin="3" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding Fonts}" SelectedItem="{Binding FontName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <ComboBox Margin="3" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding Fonts/Name}" SelectedItem="{Binding FontName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
         <!-- 使用TextBox控件显示文件路径 -->
         <TextBlock Margin="3" Grid.Row="2" Grid.Column="0" Text="Output Docx Path:" />

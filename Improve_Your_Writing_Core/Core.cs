@@ -29,8 +29,18 @@ namespace Improve_Your_Writing_Core
 
             // 添加段落
             XWPFParagraph paragraph = document.CreateParagraph();
+            
             XWPFRun run = paragraph.CreateRun();
-            run.SetText("Hello, World!");
+            run.SetText("Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz");
+            run.FontFamily = settings.FontName;
+            run.FontSize = settings.FontSize;
+            run.AddBreak(BreakType.TEXTWRAPPING);
+
+            XWPFParagraph paragraph2 = document.CreateParagraph();
+            XWPFRun run2 = paragraph2.CreateRun();
+            run2.SetText("");
+            run2.FontFamily = settings.FontName;
+            run2.FontSize = settings.FontSize;
 
             // 保存文档
             using (FileStream file = new FileStream(settings.OutputDocxPath, FileMode.Create, FileAccess.Write))

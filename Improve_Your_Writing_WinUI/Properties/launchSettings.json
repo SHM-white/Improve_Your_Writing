@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Improve_Your_Writing_WinUI (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Improve_Your_Writing_WinUI (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
