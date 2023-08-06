@@ -37,6 +37,9 @@ namespace Improve_Your_Writing
             };
             DataContext = DocumentSettingsInstance;
         }
+
+        
+
         private void Button_ChooseXlsx_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();

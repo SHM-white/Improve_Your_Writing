@@ -4,7 +4,8 @@ using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using NPOI.XWPF.UserModel;
 using NPOI.OpenXmlFormats.Wordprocessing;
-
+using System.Collections.ObjectModel;
+using System.Drawing.Text;
 
 namespace Improve_Your_Writing_Core
 {
@@ -88,6 +89,7 @@ namespace Improve_Your_Writing_Core
         public DocumentSettings()
         {
 
+            GetFonts();
         }
         private int _fontSize;
         public int FontSize
@@ -167,6 +169,26 @@ namespace Improve_Your_Writing_Core
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        //存储字体的集合
+        private System.Drawing.FontFamily[] _fonts;
+        public System.Drawing.FontFamily[] Fonts
+        {
+            get { return _fonts; }
+            set
+            {
+                _fonts = value;
+                OnPropertyChanged(nameof(Fonts));
+            }
+        }
 
+        //获取系统字体并存至集合fonts中
+        public void GetFonts()
+        {
+            // 创建InstalledFontCollection对象
+            InstalledFontCollection installedFonts = new InstalledFontCollection();
+
+            // 获取系统中已安装的字体
+            _fonts = installedFonts.Families;
+        }
     }
 }

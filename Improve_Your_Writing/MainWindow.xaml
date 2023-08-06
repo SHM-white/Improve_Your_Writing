@@ -24,18 +24,31 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
+        <!-- 使用Spin控件调整字体大小 -->
         <TextBlock Margin="3" Grid.Row="0" Grid.Column="0" Text="Font Size:" />
-        <TextBox   Margin="3" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding FontSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-        <TextBlock Margin="3" Grid.Row="1" Grid.Column="0" Text="Font Name:" />
-        <TextBox   Margin="3" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding FontName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-        <TextBlock Margin="3" Grid.Row="2" Grid.Column="0" Text="Output Docx Path:" />
-        <TextBox   Margin="3" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" x:Name="TextBox_DocxPath" Text="{Binding OutputDocxPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-        <TextBlock Margin="3" Grid.Row="3" Grid.Column="0" Text="Input Xlsx Path:" />
-        <TextBox   Margin="3" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" x:Name="TextBox_XlsxPath" Text="{Binding InputXlsxPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Margin="3" Grid.Row="0" Grid.Column="1" Text="{Binding FontSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <Button Margin="3" Grid.Row="0" Grid.Column="2" Content="+" />
+        <Button Margin="3" Grid.Row="0" Grid.Column="3" Content="-" />
+
+        <!-- 使用Spin控件设置start after line -->
         <TextBlock Margin="3" Grid.Row="4" Grid.Column="0" Text="Start After Line:" />
-        <TextBox   Margin="3" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding StartAfterLine, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-        <Button    Margin="3" Grid.Row="3" Grid.Column="4" Content="选择" Click="Button_ChooseXlsx_Click" />
-        <Button    Margin="3" Grid.Row="2" Grid.Column="4" Content="选择" Click="Button_ChooseDocx_Click" />
+        <TextBox Margin="3" Grid.Row="4" Grid.Column="1" Text="{Binding StartAfterLine, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <Button Margin="3" Grid.Row="4" Grid.Column="2" Content="+" />
+        <Button Margin="3" Grid.Row="4" Grid.Column="3" Content="-" />
+
+        <!-- 使用ComboBox控件选择字体 -->
+        <TextBlock Margin="3" Grid.Row="1" Grid.Column="0" Text="Font Name:" />
+        <ComboBox Margin="3" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding Fonts}" SelectedItem="{Binding FontName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+        <!-- 使用TextBox控件显示文件路径 -->
+        <TextBlock Margin="3" Grid.Row="2" Grid.Column="0" Text="Output Docx Path:" />
+        <TextBox Margin="3" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" x:Name="TextBox_DocxPath" Text="{Binding OutputDocxPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <Button Margin="3" Grid.Row="2" Grid.Column="3" Content="选择" Click="Button_ChooseDocx_Click" />
+
+        <TextBlock Margin="3" Grid.Row="3" Grid.Column="0" Text="Input Xlsx Path:" />
+        <TextBox Margin="3" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" x:Name="TextBox_XlsxPath" Text="{Binding InputXlsxPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <Button Margin="3" Grid.Row="3" Grid.Column="3" Content="选择" Click="Button_ChooseXlsx_Click" />
+
         <Button    Margin="3" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="5" x:Name="OK" Click="OK_Click" Content="Done"/>
     </Grid>
 
