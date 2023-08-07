@@ -29,7 +29,15 @@ namespace Improve_Your_Writing_Core
 
             // 添加段落
             XWPFParagraph paragraph = document.CreateParagraph();
-            
+            paragraph.SpacingLineRule = LineSpacingRule.EXACT;
+            paragraph.SpacingBetween = 5;
+
+            XWPFRun run1 = paragraph.CreateRun();
+            run1.SetText("\n\n\n\n\n\n\n\n\n");
+            run1.FontSize = settings.FontSize;
+            run1.FontFamily = "等线";
+            run1.AddBreak(BreakType.TEXTWRAPPING);
+
             XWPFRun run = paragraph.CreateRun();
             run.SetText("Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz");
             run.FontFamily = settings.FontName;
@@ -37,10 +45,15 @@ namespace Improve_Your_Writing_Core
             run.AddBreak(BreakType.TEXTWRAPPING);
 
             XWPFParagraph paragraph2 = document.CreateParagraph();
-            XWPFRun run2 = paragraph2.CreateRun();
-            run2.SetText("");
-            run2.FontFamily = settings.FontName;
-            run2.FontSize = settings.FontSize;
+            paragraph2.SpacingLineRule = LineSpacingRule.EXACT;
+            paragraph2.SpacingBetween = 28;
+            foreach(var item in data)
+            {
+                XWPFRun run2 = paragraph2.CreateRun();
+                run2.SetText(item.Key+"  "+item.Key+"  "+item.Key+"         ");
+                run2.FontFamily = settings.FontName;
+                run2.FontSize = settings.FontSize;
+            }
 
             // 保存文档
             using (FileStream file = new FileStream(settings.OutputDocxPath, FileMode.Create, FileAccess.Write))
@@ -98,7 +111,7 @@ namespace Improve_Your_Writing_Core
 
         public DocumentSettings()
         {
-
+            _fonts = new();
             GetFonts();
         }
         private int _fontSize;
@@ -115,8 +128,8 @@ namespace Improve_Your_Writing_Core
             }
         }
 
-        private string? _fontName;
-        public string? FontName
+        private string _fontName;
+        public string FontName
         {
             get { return _fontName; }
             set
@@ -129,8 +142,8 @@ namespace Improve_Your_Writing_Core
             }
         }
 
-        private string? _outputDocxPath;
-        public string? OutputDocxPath
+        private string _outputDocxPath;
+        public string OutputDocxPath
         {
             get { return _outputDocxPath; }
             set
@@ -143,8 +156,8 @@ namespace Improve_Your_Writing_Core
             }
         }
 
-        private string? _inputXlsxPath;
-        public string? InputXlsxPath
+        private string _inputXlsxPath;
+        public string InputXlsxPath
         {
             get { return _inputXlsxPath; }
             set
@@ -180,8 +193,8 @@ namespace Improve_Your_Writing_Core
         }
 
         //存储字体的集合
-        private System.Drawing.FontFamily[] _fonts;
-        public System.Drawing.FontFamily[] Fonts
+        private List<string> _fonts;
+        public List<string> Fonts
         {
             get { return _fonts; }
             set
@@ -198,7 +211,11 @@ namespace Improve_Your_Writing_Core
             InstalledFontCollection installedFonts = new InstalledFontCollection();
 
             // 获取系统中已安装的字体
-            _fonts = installedFonts.Families;
+            List<System.Drawing.FontFamily> fontFamilies = installedFonts.Families.ToList();
+            foreach(System.Drawing.FontFamily family in fontFamilies)
+            {
+                _fonts.Add(family.Name.ToString());
+            }
         }
     }
 }

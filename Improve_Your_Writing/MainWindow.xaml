@@ -26,19 +26,19 @@
 
         <!-- 使用Spin控件调整字体大小 -->
         <TextBlock Margin="3" Grid.Row="0" Grid.Column="0" Text="Font Size:" />
-        <TextBox Margin="3" Grid.Row="0" Grid.Column="1" Text="{Binding FontSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-        <Button Margin="3" Grid.Row="0" Grid.Column="2" Content="+" />
-        <Button Margin="3" Grid.Row="0" Grid.Column="3" Content="-" />
+        <TextBox Margin="3" x:Name="TextBox_FontSize" Grid.Row="0" Grid.Column="1" Text="{Binding FontSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <Button Margin="3" Grid.Row="0" Grid.Column="2" Content="+" Click="Button_Click"/>
+        <Button Margin="3" Grid.Row="0" Grid.Column="3" Content="-" Click="Button_Click_1"/>
 
         <!-- 使用Spin控件设置start after line -->
         <TextBlock Margin="3" Grid.Row="4" Grid.Column="0" Text="Start After Line:" />
-        <TextBox Margin="3" Grid.Row="4" Grid.Column="1" Text="{Binding StartAfterLine, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-        <Button Margin="3" Grid.Row="4" Grid.Column="2" Content="+" />
-        <Button Margin="3" Grid.Row="4" Grid.Column="3" Content="-" />
+        <TextBox Margin="3" x:Name="TextBox_StartAfterLine" Grid.Row="4" Grid.Column="1" Text="{Binding StartAfterLine, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <Button Margin="3" Grid.Row="4" Grid.Column="2" Content="+" Click="Button_Click_2"/>
+        <Button Margin="3" Grid.Row="4" Grid.Column="3" Content="-" Click="Button_Click_3"/>
 
         <!-- 使用ComboBox控件选择字体 -->
         <TextBlock Margin="3" Grid.Row="1" Grid.Column="0" Text="Font Name:" />
-        <ComboBox Margin="3" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding Fonts/Name}" SelectedItem="{Binding FontName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <ComboBox Margin="3" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding Fonts}" SelectedItem="{Binding FontName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
         <!-- 使用TextBox控件显示文件路径 -->
         <TextBlock Margin="3" Grid.Row="2" Grid.Column="0" Text="Output Docx Path:" />

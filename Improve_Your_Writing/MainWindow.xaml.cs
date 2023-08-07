@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Improve_Your_Writing_Core;
 using Microsoft.Win32;
+using NPOI.SS.Formula.Functions;
 
 namespace Improve_Your_Writing
 {
@@ -29,11 +30,11 @@ namespace Improve_Your_Writing
             DocumentSettingsInstance = new DocumentSettings()
             {
                 // 初始化属性值
-                FontSize = 12,
+                FontSize = 24,
                 FontName = "Arial",
                 OutputDocxPath = "output.docx",
                 InputXlsxPath = "input.xlsx",
-                StartAfterLine = 1
+                StartAfterLine = 0
             };
             DataContext = DocumentSettingsInstance;
         }
@@ -62,7 +63,27 @@ namespace Improve_Your_Writing
 
         private void OK_Click(object sender, RoutedEventArgs e)
         {
+            Core.Run(DocumentSettingsInstance);
+        }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            TextBox_FontSize.Text = (1 + int.Parse(TextBox_FontSize.Text)).ToString();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            TextBox_FontSize.Text = (Math.Max(int.Parse(TextBox_FontSize.Text) - 1, 0)).ToString();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            TextBox_StartAfterLine.Text = (1 + int.Parse(TextBox_StartAfterLine.Text)).ToString();
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            TextBox_StartAfterLine.Text = (Math.Max(int.Parse(TextBox_StartAfterLine.Text) - 1, 0)).ToString();
         }
     }
 }
