@@ -5,7 +5,7 @@ Console.WriteLine("Start");
 
 DocumentSettings documentSettings = new DocumentSettings() { 
     FontName = "SHM_white的字",
-    FontSize = 20,
+    FontSize = 24,
     InputXlsxPath = "D:\\Desktop\\test.xlsx",
     OutputDocxPath = "D:\\Desktop\\test.docx", 
     StartAfterLine = 0 

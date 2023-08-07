@@ -6,6 +6,7 @@ using NPOI.XWPF.UserModel;
 using NPOI.OpenXmlFormats.Wordprocessing;
 using System.Collections.ObjectModel;
 using System.Drawing.Text;
+using NPOI.SS.Formula;
 
 namespace Improve_Your_Writing_Core
 {
@@ -24,29 +25,43 @@ namespace Improve_Your_Writing_Core
 
         private static bool WriteToDocx(string path, Dictionary<string, string> data, DocumentSettings settings)
         {
-            // 创建一个新的DOCX文档对象
+            // 创建一个新的文档对象
             XWPFDocument document = new XWPFDocument();
 
+            // 创建一个新的节属性对象
+            CT_SectPr sectPr = new CT_SectPr();
+            document.Document.body.sectPr = sectPr;
+
+            // 获取文档的页面边距
+            CT_PageMar pageMargins = sectPr.AddPageMar();
+
+            // 设置页边距（以20th of a point为单位）（1英寸 = 1440磅）
+            pageMargins.left = 77U * 20;   // 左边距
+            pageMargins.right = 77U * 20;  // 右边距
+            pageMargins.top = 120U * 20;    // 上边距
+            pageMargins.bottom = 124U * 20; // 下边距
             // 添加段落
-            XWPFParagraph paragraph = document.CreateParagraph();
-            paragraph.SpacingLineRule = LineSpacingRule.EXACT;
-            paragraph.SpacingBetween = 5;
+            //XWPFParagraph paragraph = document.CreateParagraph();
+            //paragraph.SpacingLineRule = LineSpacingRule.EXACT;
+            //paragraph.SpacingBetween = 5;
 
-            XWPFRun run1 = paragraph.CreateRun();
-            run1.SetText("\n\n\n\n\n\n\n\n\n");
-            run1.FontSize = settings.FontSize;
-            run1.FontFamily = "等线";
-            run1.AddBreak(BreakType.TEXTWRAPPING);
+            //XWPFRun run1 = paragraph.CreateRun();
+            //run1.SetText("\n\n\n\n\n\n\n\n\n");
+            //run1.FontSize = 5;
+            //run1.FontFamily = "等线";
+            ////run1.AddBreak(BreakType.TEXTWRAPPING);
 
-            XWPFRun run = paragraph.CreateRun();
+            XWPFParagraph paragraph1 = document.CreateParagraph();
+            XWPFRun run = paragraph1.CreateRun();
             run.SetText("Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz");
             run.FontFamily = settings.FontName;
             run.FontSize = settings.FontSize;
-            run.AddBreak(BreakType.TEXTWRAPPING);
+            //run.AddBreak(BreakType.TEXTWRAPPING);
 
             XWPFParagraph paragraph2 = document.CreateParagraph();
-            paragraph2.SpacingLineRule = LineSpacingRule.EXACT;
-            paragraph2.SpacingBetween = 28;
+            paragraph2.SpacingLineRule = LineSpacingRule.ATLEAST;
+            paragraph2.SpacingBefore = 14;
+            paragraph2.SpacingAfter = 14;
             foreach(var item in data)
             {
                 XWPFRun run2 = paragraph2.CreateRun();
